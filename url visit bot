@@ -1,0 +1,45 @@
+#open terminal
+#cd Downloads
+#whatever youve saved it by
+import time
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+
+# Set the URL and the interval in seconds
+url = "https://gd.games/flidude/flappy-revenge"
+interval = 1  # 1 second
+
+# Set up Firefox options
+options = Options()
+options.headless = True  # Run Firefox in headless mode (without GUI)
+
+# Create a new instance of Firefox
+driver = webdriver.Firefox(options=options)
+
+while True:
+    try:
+    
+    # Create a new instance of Firefox
+        driver = webdriver.Firefox(options=options)
+
+        # Visit the URL
+        driver.get(url)
+        print("Visited the website:", url)
+        
+           # Scroll down
+        actions = ActionChains(driver)
+        actions.send_keys(Keys.PAGE_DOWN)
+        actions.perform()
+        time.sleep(1)  # Wait for scrolling animation to complete
+
+        # Wait for the specified interval
+        time.sleep(interval)
+
+    except KeyboardInterrupt:
+        # Stop the script if Ctrl+C is pressed
+        break
+
+# Quit the browser
+driver.quit()
